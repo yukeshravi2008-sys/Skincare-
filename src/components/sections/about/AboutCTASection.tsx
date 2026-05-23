@@ -72,13 +72,8 @@ export default function AboutCTASection() {
             </div>
           </div>
 
-          <div ref={rightRef} className="relative rounded-3xl overflow-hidden" style={{ height: '500px', background: 'linear-gradient(135deg, #F2EAF3 0%, #EFE7DF 100%)' }}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-6xl mb-4">✦</div>
-                <p className="text-sm font-medium" style={{ color: '#9A94A0' }}>Clinic Image Coming Soon</p>
-              </div>
-            </div>
+          <div ref={rightRef} className="relative rounded-3xl overflow-hidden" style={{ height: '500px' }}>
+            <img src="/images/clinic/cta-interior.svg" alt="" className="w-full h-full object-cover" />
           </div>
 
         </div>

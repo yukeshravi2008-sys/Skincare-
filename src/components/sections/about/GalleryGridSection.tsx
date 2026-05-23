@@ -52,10 +52,12 @@ export default function GalleryGridSection() {
 
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {galleryImages.map((img, i) => (
-            <div key={i} className="gallery-item relative rounded-2xl overflow-hidden" style={{ height: '260px', opacity: 0, transform: 'scale(0.95)', transition: 'opacity 0.5s ease, transform 0.5s ease' }}>
-              <Image src={img.src} alt={img.alt} fill className="object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#EFE7DF' }}>
-                <span className="text-sm font-medium" style={{ color: '#9A94A0' }}>{img.alt}</span>
+            <div key={i} className="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer" style={{ height: '260px', opacity: 0, transform: 'scale(0.95)', transition: 'opacity 0.5s ease, transform 0.5s ease' }}>
+              <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <p className="text-white text-sm font-medium">{img.alt}</p>
+                </div>
               </div>
             </div>
           ))}

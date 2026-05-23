@@ -7,7 +7,7 @@ import { CareFeature } from '@/types'
 function CareCard({ feature, className, initialTransform }: { feature: CareFeature; className: string; initialTransform: string }) {
   return (
     <div
-      className={`care-card p-6 rounded-2xl ${className}`}
+      className={`care-card p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${className}`}
       style={{ opacity: 0, transform: initialTransform, transition: 'opacity 0.6s ease, transform 0.6s ease', background: '#FFFFFF', border: '1px solid #E4DFE8' }}
     >
       <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: '#F2EAF3' }}>
@@ -67,7 +67,7 @@ export default function HowWeCareSection() {
           <CareCard feature={careFeatures[1]} className="text-left" initialTransform="translate(30px, -30px)" />
 
           <div ref={circleRef} className="absolute left-1/2 top-1/2 hidden md:block" style={{ width: '220px', height: '220px', opacity: 0, transform: 'translate(-50%, -50%) scale(0.9)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>
-            <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center" style={{ border: '4px solid #E4DFE8', background: '#F2EAF3' }}>
+            <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center transition-transform duration-500 hover:scale-105" style={{ border: '4px solid #E4DFE8', background: '#F2EAF3' }}>
               <span className="text-4xl">✦</span>
             </div>
           </div>

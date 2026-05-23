@@ -45,19 +45,23 @@ export default function About() {
         {/* 4-image mosaic floating over centered text */}
         <Reveal delay={0.4}>
           <div className="grid grid-cols-2 gap-2 md:gap-4 mb-16 md:mb-20 max-w-4xl mx-auto">
-            {/* Top row: small left, small right with offset */}
-            <div className="rounded-[24px] md:rounded-[40px] overflow-hidden h-32 sm:h-48 md:h-64"
-              style={{background: "linear-gradient(135deg, #8E5C8F 0%, #5A2A5D 100%)"}}>
-            </div>
-            <div className="rounded-[24px] md:rounded-[40px] overflow-hidden h-32 sm:h-48 md:h-64 mt-4 md:mt-8"
-              style={{background: "linear-gradient(135deg, #CFA1A8 0%, #F3DADF 100%)"}}>
-            </div>
-            <div className="rounded-[24px] md:rounded-[40px] overflow-hidden h-32 sm:h-48 md:h-64 -mt-4 md:-mt-8"
-              style={{background: "linear-gradient(135deg, #F3DADF 0%, #CFA1A8 100%)"}}>
-            </div>
-            <div className="rounded-[24px] md:rounded-[40px] overflow-hidden h-32 sm:h-48 md:h-64"
-              style={{background: "linear-gradient(135deg, #5A2A5D 0%, #8E5C8F 100%)"}}>
-            </div>
+            {[
+              { src: "/images/clinic/mosaic-1.jpg", cls: "" },
+              { src: "/images/clinic/mosaic-2.jpg", cls: "mt-4 md:mt-8" },
+              { src: "/images/clinic/mosaic-3.jpg", cls: "-mt-4 md:-mt-8" },
+              { src: "/images/clinic/mosaic-4.jpg", cls: "" },
+            ].map((m, i) => (
+              <div
+                key={i}
+                className={`rounded-[24px] md:rounded-[40px] overflow-hidden h-32 sm:h-48 md:h-64 group ${m.cls}`}
+              >
+                <img
+                  src={m.src}
+                  alt=""
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            ))}
           </div>
         </Reveal>
 
@@ -66,15 +70,14 @@ export default function About() {
           <div className="bg-[#EFE7DF] rounded-[32px] md:rounded-[48px] p-2 sm:p-4 md:p-6">
             <div className="grid md:grid-cols-2 gap-0 items-stretch flex-col">
               {/* Left: big rounded image */}
-              <div
-                className="rounded-[28px] md:rounded-[36px] overflow-hidden min-h-[300px] md:min-h-[400px]"
-                style={{ background: "linear-gradient(160deg, #8E5C8F 0%, #5A2A5D 50%, #CFA1A8 100%)" }}
-              >
-                <div className="h-full w-full flex items-end p-4 md:p-6">
+              <div className="rounded-[28px] md:rounded-[36px] overflow-hidden min-h-[300px] md:min-h-[400px] relative">
+                <img src="/images/clinic/about-main.svg" alt="" className="w-full h-full object-cover absolute inset-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                   <div className="bg-white/80 backdrop-blur-sm rounded-2xl px-4 py-3">
                     <p className="text-[10px] md:text-xs text-[#6B6570]">Lead Dermatologist</p>
-                    <p className="text-sm md:text-base font-semibold text-[#2E2E2E]">Dr. Sarah Mitchell</p>
-                    <p className="text-[10px] md:text-xs text-[#8E5C8F]">Dermatologist & Aesthetic Specialist</p>
+                    <p className="text-sm md:text-base font-semibold text-[#2E2E2E]">Dr. Shruthi Pavana Janardhanan</p>
+                    <p className="text-[10px] md:text-xs text-[#8E5C8F]">MBBS, MD.DVL, DNB.DVL, MNAMS, MRCP SCE DERM(UK)</p>
                   </div>
                 </div>
               </div>

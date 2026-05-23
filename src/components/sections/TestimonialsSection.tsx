@@ -5,6 +5,7 @@ import { Reveal } from "../ui/RevealAnimation";
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50);
 
   return (
     <section className="py-28 bg-[#EFE7DF]">
@@ -28,13 +29,19 @@ export default function Testimonials() {
 
             <div className="flex gap-3">
               <button
-                onClick={() => setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                onClick={() => {
+                  setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+                  setSliderPosition(50); // reset slider to middle on transition
+                }}
                 className="w-11 h-11 rounded-full border border-[#E4DFE8] flex items-center justify-center text-[#2E2E2E] hover:bg-[#5A2A5D] hover:text-white hover:border-[#5A2A5D] transition-all duration-300"
               >
                 ←
               </button>
               <button
-                onClick={() => setActive((prev) => (prev + 1) % testimonials.length)}
+                onClick={() => {
+                  setActive((prev) => (prev + 1) % testimonials.length);
+                  setSliderPosition(50); // reset slider to middle on transition
+                }}
                 className="w-11 h-11 rounded-full border border-[#E4DFE8] flex items-center justify-center text-[#2E2E2E] hover:bg-[#5A2A5D] hover:text-white hover:border-[#5A2A5D] transition-all duration-300"
               >
                 →
@@ -70,7 +77,10 @@ export default function Testimonials() {
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setActive(i)}
+                    onClick={() => {
+                      setActive(i);
+                      setSliderPosition(50); // reset slider to middle on transition
+                    }}
                     className={`h-1.5 rounded-full transition-all duration-300 ${active === i ? "w-8 bg-[#5A2A5D]" : "w-3 bg-[#E4DFE8]"}`}
                   />
                 ))}
@@ -80,13 +90,67 @@ export default function Testimonials() {
 
           <Reveal delay={0.2}>
             <div
-              className="rounded-[36px] md:rounded-[48px] overflow-hidden h-[360px] sm:h-[400px] md:h-[580px] w-full"
-              style={{ background: "linear-gradient(160deg, #CFA1A8 0%, #5A2A5D 50%, #8E5C8F 100%)" }}
+              className="rounded-[36px] md:rounded-[48px] overflow-hidden h-[360px] sm:h-[400px] md:h-[580px] w-full relative group shadow-lg border border-[#E4DFE8]/50"
             >
-              <div className="h-full w-full flex items-end p-6">
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl px-5 py-4 w-full">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#8E5C8F] mb-1">Real Results · Real Patients</p>
-                  <p className="text-sm text-[#2E2E2E]">12 Weeks · Acne Treatment</p>
+              {/* Bottom Image (After state) */}
+              <img 
+                src={testimonials[active].afterImage} 
+                alt="After treatment clear skin" 
+                className="w-full h-full object-cover absolute inset-0 select-none pointer-events-none" 
+              />
+              
+              {/* Top Image (Before state, clipped based on slider position) */}
+              <div 
+                className="absolute inset-0 overflow-hidden pointer-events-none select-none z-10"
+                style={{ 
+                  clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` 
+                }}
+              >
+                <img 
+                  src={testimonials[active].beforeImage} 
+                  alt="Before treatment skin concern" 
+                  className="w-full h-full object-cover absolute inset-0"
+                />
+              </div>
+
+              {/* Glassmorphic Labels */}
+              <div className="absolute top-4 left-4 z-20 bg-white/45 backdrop-blur-md border border-white/20 text-[#2E2E2E] px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-widest uppercase shadow-sm pointer-events-none">
+                Before
+              </div>
+              <div className="absolute top-4 right-4 z-20 bg-white/45 backdrop-blur-md border border-white/20 text-[#2E2E2E] px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-widest uppercase shadow-sm pointer-events-none">
+                After
+              </div>
+
+              {/* Vertical Divider & Drag Handle */}
+              <div 
+                className="absolute top-0 bottom-0 w-0.5 bg-white z-20 pointer-events-none"
+                style={{ left: `${sliderPosition}%` }}
+              >
+                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-xl border border-[#E4DFE8]/50 flex items-center justify-center text-[#5A2A5D] font-bold text-sm pointer-events-none group-hover:scale-105 transition-transform duration-300">
+                  ↔
+                </div>
+              </div>
+
+              {/* Drag/Swipe overlay input range */}
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value={sliderPosition}
+                onChange={(e) => setSliderPosition(Number(e.target.value))}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
+                aria-label="Before and after comparison slider"
+              />
+
+              {/* Results Text Badge (remains at bottom) */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 z-20 pointer-events-none">
+                <div className="bg-white/80 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4 w-full shadow-md">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#8E5C8F] mb-1">
+                    Real Results · Real Patients
+                  </p>
+                  <p className="text-sm font-semibold text-[#2E2E2E]">
+                    {testimonials[active].duration} · {testimonials[active].treatment}
+                  </p>
                 </div>
               </div>
             </div>

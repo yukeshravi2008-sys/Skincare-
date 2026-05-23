@@ -6,23 +6,28 @@ export interface Service {
 
 export const services: Service[] = [
   {
-    icon: "☀",
-    title: "Acne & Skin Health",
-    description: "Personalized dermatology care for acne, pigmentation, and long-term skin maintenance.",
+    icon: "✦",
+    title: "Hair Loss Treatments",
+    description: "Advanced regenerative therapies to restore growth, density, and scalp health (PRP, GFC PRP, iPRF, Mesotherapy, Threads).",
   },
   {
     icon: "◈",
-    title: "Botox & Fillers",
-    description: "Subtle enhancements that refresh your features without changing who you are.",
+    title: "Acne Scar Revision",
+    description: "Multi-modal scar correction targeting structural depths to restore skin texture (Subcision, MNRF, TCA Cross, Biofillers).",
+  },
+  {
+    icon: "☀",
+    title: "Pigmentation Correction",
+    description: "Clinical precision laser toning and medical peeling systems for flawless skin tone (Picolaser, Picofusion, Cosmelan).",
   },
   {
     icon: "⬡",
-    title: "Laser Treatments",
-    description: "Advanced laser solutions for hair removal, pigmentation, texture, and scars.",
+    title: "Vitiligo Treatments",
+    description: "State-of-the-art therapies restoring active pigmentation (Excimer Laser, Mini Punch Grafting, 5FU Microneedling).",
   },
   {
-    icon: "✦",
-    title: "Anti-Aging Solutions",
-    description: "Target lines, volume loss, dullness, and tired skin with safe, proven treatments.",
+    icon: "✚",
+    title: "Quick Procedures",
+    description: "Minor clinical treatments performed with maximum safety and minimal recovery (Skin Tag, Milia, Ear Lobe Repair, Skin Biopsy).",
   },
 ]

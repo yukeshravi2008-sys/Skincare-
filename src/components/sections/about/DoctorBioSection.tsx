@@ -49,11 +49,9 @@ export default function DoctorBioSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
           <div ref={leftRef} className="relative">
-            <div className="relative rounded-3xl overflow-hidden" style={{ height: '580px' }}>
+            <div className="relative rounded-3xl overflow-hidden shadow-xl" style={{ height: '580px' }}>
               <Image src={doctorData.image} alt={doctorData.name} fill className="object-cover" />
-              <div className="absolute inset-0 flex items-center justify-center" style={{ background: '#EFE7DF' }}>
-                <span className="text-base font-medium" style={{ color: '#9A94A0' }}>Doctor Photo Coming Soon</span>
-              </div>
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 px-6 py-4 flex items-center justify-between" style={{ background: 'rgba(255,255,255,0.25)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
                 <span className="text-sm font-medium" style={{ color: '#2E2E2E' }}>{doctorData.role}</span>
                 <span className="text-xl">✦</span>

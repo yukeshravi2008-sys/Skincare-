@@ -63,11 +63,10 @@ export default function StatsSection() {
 
   return (
     <section className="py-16 px-6 md:px-12 lg:px-20" style={{ background: '#F7F3EF' }}>
-      <div ref={sectionRef} className="relative rounded-2xl overflow-hidden" style={{ minHeight: '400px', background: 'linear-gradient(135deg, #5A2A5D 0%, #8E5C8F 50%, #CFA1A8 100%)' }}>
+      <div ref={sectionRef} className="relative rounded-2xl overflow-hidden" style={{ minHeight: '400px' }}>
+        <img src="/images/clinic/stats-bg.svg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0" style={{ background: '#5A2A5D', opacity: 0.75 }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 40%, rgba(42,15,45,0.7) 100%)' }} />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-white/40 text-sm font-medium">Clinic Background Image Coming Soon</p>
-        </div>
         <div className="absolute bottom-0 left-0 right-0 px-8 md:px-16 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat: Stat, i) => (

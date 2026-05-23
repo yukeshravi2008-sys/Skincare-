@@ -36,7 +36,6 @@ export default function Hero() {
 
   // Pills span the full 360° evenly
   const pillCount = treatments.length;
-  const pillLength = isMobile ? 120 : 160; // px — length of each capsule
   const orbitRadius = isMobile ? 200 : 310; // px — distance from center to pill midpoint
 
   return (
@@ -115,7 +114,7 @@ export default function Hero() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
-            src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=2000&auto=format&fit=crop" 
+            src="/realistic-skin.png" 
             alt="Skin treatment"
             className="w-full h-full object-cover"
           />
@@ -171,7 +170,7 @@ export default function Hero() {
                     position: "absolute",
                     left: x,
                     top: y,
-                    width: pillLength,
+                    width: "max-content",
                     height: 38,
                     // Center the pill on its orbit point, and rotate so it points outward radially
                     transform: `translate(-50%, -50%) rotate(${pillAngle + 90}deg)`,
@@ -181,7 +180,6 @@ export default function Hero() {
                   {/* The pill capsule */}
                   <div
                     style={{
-                      width: "100%",
                       height: "100%",
                       borderRadius: 999,
                       background: "rgba(255,255,255,0.15)",
@@ -214,12 +212,10 @@ export default function Hero() {
                     <span
                       style={{
                         color: "rgba(255,255,255,0.95)",
-                        fontSize: 11,
+                        fontSize: isMobile ? 10 : 11,
                         fontWeight: 500,
                         letterSpacing: "0.02em",
                         whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
                       }}
                     >
                       {t.name}
